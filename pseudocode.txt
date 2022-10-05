@@ -1,0 +1,41 @@
+listOfEasyWords = []
+listOfMediumWords = []
+listOfHardWords = []
+correctWord
+scrambledWord
+userScore
+computerScore
+timer
+computerDifficulty
+
+
+scrambleWord(currentWord):	
+	scramble word
+	return scrambled word
+
+compareInputWithCorrectWord(inputWord, correctWord, isPlayerInput):
+	if (inputWord equals correctWord)
+		if (isPlayerInput TRUE):
+			userScore increases
+		else:
+			computerScore increases
+	else
+		output 'try again'
+
+computerAttemptToGuessWord ():
+	randomly scramble scrambledWord
+	call compareInputWithCorrectWord
+
+computerGuessAttemptTimer ():
+	create interval timer
+	at every interval call computerAttemptToGuessWord
+
+gameTimer ():
+	create interval timer
+	when timer has finished end game
+	
+
+displayScores ():
+	display winndow with users' and computer's score
+	display button to play again
+	
