@@ -8,12 +8,21 @@ computerScore
 timer
 computerDifficulty
 
+chooseWord():
+	get user difficulty choice from html input
+	if (easy):
+		choose random word from listOfEasyWords
+	else if (medium):
+		choose random word from listOfMediumWords
+	else if (hard):
+		choose random word from listOfHardWords
+
 
 scrambleWord(currentWord):	
 	scramble word
 	return scrambled word
 
-compareInputWithCorrectWord(inputWord, correctWord, isPlayerInput):
+compareInputWithCorrectWord(inputWord, isPlayerInput):
 	if (inputWord equals correctWord)
 		if (isPlayerInput TRUE):
 			userScore increases
@@ -22,9 +31,12 @@ compareInputWithCorrectWord(inputWord, correctWord, isPlayerInput):
 	else
 		output 'try again'
 
+handleUserINput(userInputWord):
+	call compareInputWithCorrectWord passing the users's attempt to unscramble the word and isPlayerInput = TRUE
+
 computerAttemptToGuessWord ():
 	randomly scramble scrambledWord
-	call compareInputWithCorrectWord
+	call compareInputWithCorrectWord passing the computer's attempt to unscramble the word and isPlayerInput = FALSE
 
 computerGuessAttemptTimer ():
 	create interval timer
