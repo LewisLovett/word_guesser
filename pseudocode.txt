@@ -1,21 +1,19 @@
-listOfEasyWords = []
-listOfMediumWords = []
-listOfHardWords = []
 correctWord
 scrambledWord
 userScore
 computerScore
 timer
 computerDifficulty
+apiURL
 
 chooseWord():
 	get user difficulty choice from html input
 	if (easy):
-		choose random word from listOfEasyWords
+		make and api call for a random word with 4 letters
 	else if (medium):
-		choose random word from listOfMediumWords
+		make and api call for a random word with 6 letters
 	else if (hard):
-		choose random word from listOfHardWords
+		make and api call for a random word with 8 letters
 
 
 scrambleWord(currentWord):	
@@ -28,6 +26,7 @@ compareInputWithCorrectWord(inputWord, isPlayerInput):
 			userScore increases
 		else:
 			computerScore increases
+		call chooseWord() to generate new word
 	else
 		output 'try again'
 
@@ -44,10 +43,12 @@ computerGuessAttemptTimer ():
 
 gameTimer ():
 	create interval timer
-	when timer has finished end game
+	when timer has finished call endGame()
 	
-
-displayScores ():
-	display winndow with users' and computer's score
-	display button to play again
-	
+endGame ():
+	if (userScore > computerScore):
+		output user wins
+	else if (userScore < computerScore):
+		output computer wins
+	else:
+		output tie
