@@ -3,20 +3,13 @@ let scrambledWord;
 
 const chooseWord = async (difficulty) => {
     const url = `https://random-word-api.herokuapp.com/word?length=${difficulty}`;
-    const response = await fetch(url);
-    return response.json();
+    fetch(url).then((response) => response.json()).then((data)=>{scrambleWord(data[0])});
 }
-//    .then((response) => response.json()).then((data) => console.log(data[0]));
-const setWord = (word) => {
-    newWord = word;
-    scrambleWord(word);
-}
-chooseWord(4).then((data)=>{setWord(data[0])});
 
-const scrambleWord  = (newWord) =>{
-    let letterArray = newWord.split("");
+
+const scrambleWord  = (word) =>{
+    let letterArray = word.split("");
     let letterArrayLength = letterArray.length;
-
     for (let i=0; i<letterArrayLength-1; i++){
         const randNum = Math.floor(Math.random() *  letterArrayLength);
 
@@ -26,4 +19,8 @@ const scrambleWord  = (newWord) =>{
     }
     scrambledWord = letterArray.join("");
     document.querySelector(".scrambledWordDisplay").innerHTML = scrambledWord;
+    newWord = word;
 }
+
+chooseWord(4);
+    
