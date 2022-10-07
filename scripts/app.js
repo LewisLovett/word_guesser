@@ -1,7 +1,7 @@
 let newWord;
 let scrambledWord;
-let userScore;
-let computerScore;
+let userScore = 0;
+let computerScore = 0;
 
 const chooseWord = async (difficulty) => {
     const url = `https://random-word-api.herokuapp.com/word?length=${difficulty}`;
@@ -27,6 +27,7 @@ const wordCompare = (inputWord, isPlayerInput) => {
     if(inputWord==newWord){
         if(isPlayerInput){
             userScore++;
+            console.log(userScore);
         }else{
             computerScore++;
         }
@@ -36,4 +37,9 @@ const wordCompare = (inputWord, isPlayerInput) => {
         }
     }
 }
+
+const handleUserInput = () => {
+    wordCompare(document.querySelector(".wordGuessInput").value, true);
+}
+document.querySelector(".guessBtn").addEventListener("click", handleUserInput);
 chooseWord(4);
