@@ -1,11 +1,12 @@
 let newWord;
 let scrambledWord;
+let userScore;
+let computerScore;
 
 const chooseWord = async (difficulty) => {
     const url = `https://random-word-api.herokuapp.com/word?length=${difficulty}`;
     fetch(url).then((response) => response.json()).then((data)=>{scrambleWord(data[0])});
 }
-
 
 const scrambleWord  = (word) =>{
     let letterArray = word.split("");
@@ -22,5 +23,17 @@ const scrambleWord  = (word) =>{
     newWord = word;
 }
 
+const wordCompare = (inputWord, isPlayerInput) => {
+    if(inputWord==newWord){
+        if(isPlayerInput){
+            userScore++;
+        }else{
+            computerScore++;
+        }
+    }else{
+        if(isPlayerInput){
+            alert("nope");
+        }
+    }
+}
 chooseWord(4);
-    
