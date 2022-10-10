@@ -1,11 +1,11 @@
-let newWord;
-let scrambledWord;
+let currentWord;
+let scrambledCurrentWord;
 let userScore = 0;
 let computerScore = 0;
 
 const chooseWord = async (difficulty) => {
     const url = `https://random-word-api.herokuapp.com/word?length=${difficulty}`;
-    fetch(url).then((response) => response.json()).then((data)=>{scrambleWord(data[0])});
+    fetch(url).then((response) => response.json()).then((data)=>{assignNewWord(data[0])});
 }
 
 const scrambleWord  = (word) =>{
@@ -18,16 +18,20 @@ const scrambleWord  = (word) =>{
         letterArray[i] = letterArray[randNum];
         letterArray[randNum] = temp;
     }
-    scrambledWord = letterArray.join("");
-    document.querySelector(".scrambledWordDisplay").innerHTML = scrambledWord;
-    newWord = word;
+    console.log(letterArray.join(""))
+    return letterArray.join("");
+}
+
+const assignNewWord = (word) =>{
+    currentWord = word;
+    scrambledCurrentWord = scrambleWord(word);
+    document.querySelector(".scrambledWordDisplay").innerHTML = scrambledCurrentWord;
 }
 
 const wordCompare = (inputWord, isPlayerInput) => {
-    if(inputWord==newWord){
+    if(inputWord==currentWord){
         if(isPlayerInput){
             userScore++;
-            console.log(userScore);
         }else{
             computerScore++;
         }
@@ -41,5 +45,13 @@ const wordCompare = (inputWord, isPlayerInput) => {
 const handleUserInput = () => {
     wordCompare(document.querySelector(".wordGuessInput").value, true);
 }
+
+const computerWordGuess = () => {
+    let computerGuess = scrambleWord(scrambledCurrentWord);
+    console.log(computerGuess);
+    wordCompare(computerGuess);
+}
+
 document.querySelector(".guessBtn").addEventListener("click", handleUserInput);
 chooseWord(4);
+// computerWordGuess();
