@@ -2,6 +2,7 @@ let currentWord;
 let scrambledCurrentWord;
 let userScore = 0;
 let computerScore = 0;
+let difficulty = 4;
 
 const chooseWord = async (difficulty) => {
     const url = `https://random-word-api.herokuapp.com/word?length=${difficulty}`;
@@ -35,6 +36,9 @@ const wordCompare = (inputWord, isPlayerInput) => {
         }else{
             computerScore++;
         }
+        updateScore();
+        chooseWord(difficulty);
+
     }else{
         if(isPlayerInput){
             alert("nope");
@@ -42,21 +46,29 @@ const wordCompare = (inputWord, isPlayerInput) => {
     }
 }
 
+const updateScore = () => {
+    document.querySelector(".playerScoreDisplay").innerHTML = userScore;
+    document.querySelector(".computerScoreDisplay").innerHTML = computerScore;
+}
+
 const handleUserInput = () => {
+    console.log(currentWord);
     wordCompare(document.querySelector(".wordGuessInput").value, true);
 }
 
 const computerWordGuess = () => {
     let computerGuess = scrambleWord(scrambledCurrentWord);
-    console.log(computerGuess);
-    wordCompare(computerGuess);
+    wordCompare(computerGuess,false);
+}
+
+
+
+const gameStart = async () => {
+    difficulty = document.querySelector('input[name="difficulty"]:checked').value;
+    await chooseWord(difficulty);
+    setInterval(computerWordGuess,5000);
 }
 
 document.querySelector(".guessBtn").addEventListener("click", handleUserInput);
-
-const play = async () => {
-    await chooseWord(4);
-    setInterval(computerWordGuess,5000);
-}
-play();
+document.querySelector(".startBtn").addEventListener("click", gameStart);
 // computerWordGuess();
