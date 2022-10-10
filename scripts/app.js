@@ -31,16 +31,23 @@ const chooseWord = async (difficulty) => {
 }
 
 const scrambleWord  = (word) =>{
+    let wordScrambled = false
     let letterArray = word.split("");
     let letterArrayLength = letterArray.length;
-    for (let i=0; i<letterArrayLength-1; i++){
-        const randNum = Math.floor(Math.random() *  letterArrayLength);
-
-        let temp = letterArray[i];
-        letterArray[i] = letterArray[randNum];
-        letterArray[randNum] = temp;
+    let scrambledWord = "";
+    while(!wordScrambled){
+        for (let i=0; i<letterArrayLength-1; i++){
+            const randNum = Math.floor(Math.random() *  letterArrayLength);
+            let temp = letterArray[i];
+            letterArray[i] = letterArray[randNum];
+            letterArray[randNum] = temp;
+        }
+        scrambledWord = letterArray.join("");
+        if(scrambledWord != word){
+            wordScrambled = true;
+        }
     }
-    return letterArray.join("");
+    return scrambledWord;
 }
 
 const assignNewWord = (word) =>{
