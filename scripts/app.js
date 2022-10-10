@@ -3,10 +3,28 @@ let scrambledCurrentWord;
 let userScore = 0;
 let computerScore = 0;
 let difficulty = 4;
+let wordDefinition = "";
+let definitionFound = false;
+
+const getDefinition = async (word) => {
+    const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+    await fetch(url).then((response) => response.json()).then((data)=>{ 
+        if(data.title != "No Definitions Found"){
+            setDefinition(data[0].meanings[0].definitions[0].definition)
+            definitionFound = true;
+        }
+        }); 
+}
 
 const chooseWord = async (difficulty) => {
-    const url = `https://random-word-api.herokuapp.com/word?length=${difficulty}`;
-    await fetch(url).then((response) => response.json()).then((data)=>{assignNewWord(data[0])});
+    definitionFound = false;
+    let newWord = "";
+    while(!definitionFound){
+        const url = `https://random-word-api.herokuapp.com/word?length=${difficulty}`;
+        await fetch(url).then((response) => response.json()).then((data)=>{newWord=data[0]});
+        await getDefinition(newWord);
+    }
+    assignNewWord(newWord);
 }
 
 const scrambleWord  = (word) =>{
@@ -51,6 +69,11 @@ const updateScore = () => {
     document.querySelector(".computerScoreDisplay").innerHTML = computerScore;
 }
 
+const setDefinition = (definition) => {
+    console.log(definition);
+    document.querySelector(".definitionDisplay").innerHTML = definition;
+}
+
 const handleUserInput = () => {
     console.log(currentWord);
     wordCompare(document.querySelector(".wordGuessInput").value, true);
@@ -64,6 +87,7 @@ const computerWordGuess = () => {
 
 
 const gameStart = async () => {
+    definitionFound = false;
     difficulty = document.querySelector('input[name="difficulty"]:checked').value;
     await chooseWord(difficulty);
     setInterval(computerWordGuess,5000);
