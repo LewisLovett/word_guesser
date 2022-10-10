@@ -3,11 +3,14 @@ let scrambledCurrentWord;
 let userScore = 0;
 let computerScore = 0;
 let difficulty = 4;
+let computerGuessInterval = 5000;
 let wordDefinition = "";
 let definitionFound = false;
+let guessInterval;
 
 const getDefinition = async (word) => {
     const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+    console.log(word);
     await fetch(url).then((response) => response.json()).then((data)=>{ 
         if(data.title != "No Definitions Found"){
             setDefinition(data[0].meanings[0].definitions[0].definition)
@@ -92,10 +95,20 @@ const computerWordGuess = () => {
 
 
 const gameStart = async () => {
+    clearInterval(guessInterval);
     definitionFound = false;
+    userScore = 0;
+    computerScore = 0;
     difficulty = document.querySelector('input[name="difficulty"]:checked').value;
+    if (difficulty==3){
+        computerGuessInterval = 5000;
+    }else if (difficulty==5){
+        computerGuessInterval = 3000;
+    }else if (difficulty==8){
+        computerGuessInterval = 2000;
+    }
     await chooseWord(difficulty);
-    setInterval(computerWordGuess,5000);
+    guessInterval = setInterval(computerWordGuess,computerGuessInterval);
 }
 
 document.querySelector(".guessBtn").addEventListener("click", handleUserInput);
