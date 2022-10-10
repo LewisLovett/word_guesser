@@ -67,6 +67,11 @@ const wordCompare = (inputWord, isPlayerInput) => {
 const updateScore = () => {
     document.querySelector(".playerScoreDisplay").innerHTML = userScore;
     document.querySelector(".computerScoreDisplay").innerHTML = computerScore;
+    if (userScore == 10){
+        alert("User wins");
+    }else if (computerScore == 10){
+        alert("Computer wins");
+    }
 }
 
 const setDefinition = (definition) => {
