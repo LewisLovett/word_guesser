@@ -14,7 +14,13 @@ body {
   align-items: center;
 }
 
-h1, h2, h3 {
+h1 {
+  color: #8B786D;
+  text-decoration: underline;
+  margin-bottom: 15px;
+}
+
+h2, h3 {
   color: #BFA89E;
 }
 
@@ -22,8 +28,12 @@ h1 {
   font-size: 3em;
 }
 
-h2, h3 {
+h2 {
   font-size: 2.5em;
+}
+
+h3 {
+  font-size: 2em;
 }
 
 label, div {
@@ -34,8 +44,9 @@ button {
   padding: 10px;
   background-color: #BFA89E;
   color: #283044;
-  font-size: 2em;
+  font-size: 1.7em;
   margin: 10px;
+  min-width: 160px;
 }
 
 input {

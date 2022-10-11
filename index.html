@@ -12,24 +12,27 @@
     <h1>Word Guesser</h1>
     <div>
     <p>Please select difficulty</p>
-    <lable for="easy">Easy:</lable>
-    <input type="radio" name="difficulty" value=3 id="easy" checked>
-    <lable for="medium">Medium:</lable>
-    <input type="radio" name="difficulty" value=5 id="medium">
-    <lable for="hard">Hard:</lable>
-    <input type="radio" name="difficulty" value=8 id="hard">
+        <lable for="easy">Easy:</lable>
+        <input type="radio" name="difficulty" value=3 id="easy" checked>
+        <lable for="medium">Medium:</lable>
+        <input type="radio" name="difficulty" value=5 id="medium">
+        <lable for="hard">Hard:</lable>
+        <input type="radio" name="difficulty" value=8 id="hard">
     </div>
-    <button class="startBtn">Click me to start</button>
-    <button class="stopBtn">Click me to stop</button>
+    <div>
+        <button class="startBtn">Start</button>
+        <button class="stopBtn">Stop</button>
+    </div>
     <h2>Timer</h2>
     <div class="countdownTimer">60</div>
-    <div class="timerDisplay"></div>
+
     <h3>Player Score</h3>
     <div class="playerScoreDisplay">0</div>
+
     <h3>Computer Score</h3>
     <div class="computerScoreDisplay">0</div>
     
-
+    <h3>Unscramble the word</h3>
     <div class="scrambledWordDisplay">Word TBD</div>
     <div class="definitionDisplay">Definition TBD</div>
     <input class="wordGuessInput">
