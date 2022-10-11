@@ -6,8 +6,11 @@ let difficulty = 4;
 let computerGuessInterval = 5000;
 let wordDefinition = "";
 let definitionFound = false;
-let guessInterval;
 let countdown = 60;
+let guessInterval;
+let countdownInterval;
+
+
 
 const getDefinition = async (word) => {
     const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
@@ -102,9 +105,12 @@ const computerWordGuess = () => {
 
 const gameStart = async () => {
     clearInterval(guessInterval);
+    clearInterval(countdownInterval);
     definitionFound = false;
     userScore = 0;
     computerScore = 0;
+    countdown = 60;
+    document.querySelector(".countdownTimer").innerHTML = countdown;
     updateScore();
     difficulty = document.querySelector('input[name="difficulty"]:checked').value;
     if (difficulty==3){
