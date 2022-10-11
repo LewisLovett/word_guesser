@@ -151,4 +151,5 @@ const gameEnd = () => {
 
 document.querySelector(".guessBtn").addEventListener("click", handleUserInput);
 document.querySelector(".startBtn").addEventListener("click", gameStart);
+document.querySelector(".stopBtn").addEventListener("click", gameEnd);
 // computerWordGuess();
