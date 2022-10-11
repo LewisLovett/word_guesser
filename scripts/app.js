@@ -7,6 +7,7 @@ let computerGuessInterval = 5000;
 let wordDefinition = "";
 let definitionFound = false;
 let guessInterval;
+let countdown = 60;
 
 const getDefinition = async (word) => {
     const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
@@ -85,12 +86,10 @@ const updateScore = () => {
 }
 
 const setDefinition = (definition) => {
-    console.log(definition);
     document.querySelector(".definitionDisplay").innerHTML = definition;
 }
 
 const handleUserInput = () => {
-    console.log(currentWord);
     wordCompare(document.querySelector(".wordGuessInput").value, true);
 }
 
@@ -116,10 +115,33 @@ const gameStart = async () => {
         computerGuessInterval = 500;
     }
     await chooseWord(difficulty);
+    startCountDown();
     guessInterval = setInterval(computerWordGuess,computerGuessInterval);
 }
 
+const startCountDown = (guessInterval) => {
+    countdownInterval = setInterval(countDownOne,1000);
+}
 
+const countDownOne = () => {
+    countdown--;
+    document.querySelector(".countdownTimer").innerHTML = countdown;
+    if (countdown==0){
+        gameEnd();
+    }
+}
+
+const gameEnd = () => {
+    clearInterval(guessInterval);
+    clearInterval(countdownInterval);
+    if (userScore > computerScore){
+        alert("User wins");
+    }else if (userScore > computerScore){
+        alert("Computer wins");
+    }else{
+        alert("Tie")
+    }
+}
 
 document.querySelector(".guessBtn").addEventListener("click", handleUserInput);
 document.querySelector(".startBtn").addEventListener("click", gameStart);
