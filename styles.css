@@ -1,0 +1,49 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+}
+
+body {
+  background-color: #283044;
+  color: #EBF5EE;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1, h2, h3 {
+  color: #BFA89E;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2, h3 {
+  font-size: 2.5em;
+}
+
+label, div {
+  font-size: 1.5em;
+}
+
+button {
+  padding: 10px;
+  background-color: #BFA89E;
+  color: #283044;
+  font-size: 2em;
+  margin: 10px;
+}
+
+input {
+  padding: 10px;
+  font-size: 1.5em;
+}
+
+.definitionDisplay {
+  padding: 15px;
+  text-align: center;
+}/*# sourceMappingURL=styles.css.map */

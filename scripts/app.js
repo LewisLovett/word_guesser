@@ -106,17 +106,20 @@ const gameStart = async () => {
     definitionFound = false;
     userScore = 0;
     computerScore = 0;
+    updateScore();
     difficulty = document.querySelector('input[name="difficulty"]:checked').value;
     if (difficulty==3){
         computerGuessInterval = 5000;
     }else if (difficulty==5){
-        computerGuessInterval = 3000;
+        computerGuessInterval = 1000;
     }else if (difficulty==8){
-        computerGuessInterval = 2000;
+        computerGuessInterval = 500;
     }
     await chooseWord(difficulty);
     guessInterval = setInterval(computerWordGuess,computerGuessInterval);
 }
+
+
 
 document.querySelector(".guessBtn").addEventListener("click", handleUserInput);
 document.querySelector(".startBtn").addEventListener("click", gameStart);
