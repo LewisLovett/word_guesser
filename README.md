@@ -12,6 +12,6 @@ The game ends when the time runs out or either the user or computer gets a score
 ## Programs Used
 - Visual Studio Code
 
-##APIs used
+## APIs used
 - Free Dictionary API https://dictionaryapi.dev/
 - Random Word API http://random-word-api.herokuapp.com/home
